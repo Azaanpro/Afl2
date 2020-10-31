@@ -6,21 +6,27 @@ import {
   TextInput,
   ActivityIndicator,
   StyleSheet,
+  Image,
 } from 'react-native';
 import firebase from 'firebase';
 import ProfilScreen from './ProfilScreen';
 import SignupForm from './SignUpForm';
 import Booking from './Booking';
+import Calender from './Calender';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createAppContainer} from 'react-navigation';
 
 //Vi deklarerer vores drawnavigator og bestemmer følgende screens
 const AppDrawerNavigator = createDrawerNavigator({
+  Calender: {
+    screen: Calender,
+  },
+
   Booking: {
     screen: Booking,
   },
 
-  Profil: {
+  Settings: {
     screen: ProfilScreen,
   },
 });
@@ -97,7 +103,16 @@ export default class LoginForm extends React.Component {
     //Ydemere kalder vi på errormessage hvis indtastet er forkert
     return (
       <View style={styles.container}>
-        <Text style={styles.paragraph}>Velkommen til Barber Shop</Text>
+        <Image
+          style={styles.backgroundImage}
+          source={{
+            uri:
+              'https://cosmeticideas.com/wp-content/uploads/2016/04/low-fade-haircut-with-Razor-Faded-Pompadour-model.jpg',
+          }}
+        />
+
+        <Text style={styles.paragraph}>BarberBook</Text>
+
         <Text style={styles.header}>Login</Text>
         <TextInput
           placeholder="email"
@@ -139,6 +154,7 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   inputField: {
+    fontWeight: 'bold',
     borderWidth: 1,
     margin: 10,
     padding: 10,
@@ -155,8 +171,16 @@ const styles = StyleSheet.create({
 
   paragraph: {
     fontWeight: 'bold',
-    fontSize: 35,
+    fontSize: 40,
     padding: 60,
     justifyContent: 'center',
+  },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    opacity: 0.3,
   },
 });
